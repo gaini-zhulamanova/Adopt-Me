@@ -3,10 +3,9 @@ import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
 
 const SearchParams = () => {
-  // create a hook: current location, update Location. Hooks always have "useSomething"
   const [location, updateLocation] = useState("Seattle, WA");
-  const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breeds, updateBreeds] = useState([]);
+  const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, updateBreed] = useDropdown("Breed", "", breeds);
 
   useEffect(() => {
@@ -30,7 +29,6 @@ const SearchParams = () => {
             onChange={e => updateLocation(e.target.value)}
           />
         </label>
-
         <AnimalDropdown />
         <BreedDropdown />
         <button>Submit</button>
