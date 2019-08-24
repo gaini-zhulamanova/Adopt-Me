@@ -1,10 +1,13 @@
 // mostly code from https://reactjs.org/docs/error-boundaries.html
 
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, Redirect } from "@reach/router";
 
 class ErrorBoundary extends Component {
-  state = { hasError: false };
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, redirect: false };
+  }
   static getDerivedStateFromError() {
     return { hasError: true };
   }
@@ -20,6 +23,9 @@ class ErrorBoundary extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
     if (this.state.hasError) {
       return (
         <h>
@@ -29,7 +35,7 @@ class ErrorBoundary extends Component {
       );
     }
 
-    return this.props.chuldren;
+    return this.props.children;
   }
 }
 
